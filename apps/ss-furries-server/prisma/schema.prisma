@@ -1,0 +1,37 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DB_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model Message {
+  content    String?
+  createdAt  DateTime  @default(now())
+  id         String    @id @default(cuid())
+  senderName String?
+  timestamp  DateTime?
+  updatedAt  DateTime  @updatedAt
+}
+
+model Event {
+  createdAt DateTime  @default(now())
+  eventDate DateTime?
+  eventName String?
+  id        String    @id @default(cuid())
+  updatedAt DateTime  @updatedAt
+}
+
+model Participant {
+  createdAt       DateTime @default(now())
+  facebookLink    String?
+  furryName       String?
+  hasPreparedGift Boolean?
+  id              String   @id @default(cuid())
+  password        Int?
+  refSheet        Json?
+  updatedAt       DateTime @updatedAt
+  wishlist        String?
+}
